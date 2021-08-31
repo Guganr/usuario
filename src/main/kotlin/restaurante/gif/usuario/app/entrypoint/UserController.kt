@@ -11,17 +11,17 @@ import restaurante.gif.usuario.domain.usecase.ListUserByIdUseCase.UserNotFoundEx
 import javax.validation.Valid
 
 @RestController
-@RequestMapping("/usuario")
-class UsuarioController(
-    private val userByIdUseCase: ListUserByIdUseCase,
+@RequestMapping("/user")
+class UserController(
     private val listAllUsersUseCase: ListAllUsersUseCase,
-    private val deleteUserUseCase: DeleteUserUseCase,
+    private val userByIdUseCase: ListUserByIdUseCase,
     private val saveUserUseCase: SaveUserUseCase,
     private val updateUserUseCase: UpdateUserUseCase,
+    private val deleteUserUseCase: DeleteUserUseCase,
 ) {
 
     @GetMapping
-    fun listarTodosUsuarios(
+    fun listAllUsers(
         uriBuilder: UriComponentsBuilder,
     ): ResponseEntity<List<UserDto>>? =
         runCatching {
@@ -37,7 +37,7 @@ class UsuarioController(
         }.getOrThrow()
 
     @GetMapping("/{id}")
-    fun listarUsuarioPorId(
+    fun listUserById(
         @PathVariable id: String,
         uriBuilder: UriComponentsBuilder,
     ): ResponseEntity<UserDto> =
@@ -53,7 +53,7 @@ class UsuarioController(
         }.getOrThrow()
 
     @PostMapping
-    fun cadastrarUsuarioNovo(
+    fun saveUser(
         @RequestBody @Valid user: User,
         uriBuilder: UriComponentsBuilder,
     ): ResponseEntity<UserDto> = saveUserUseCase.execute(user)
@@ -79,7 +79,7 @@ class UsuarioController(
     }.getOrThrow()
 
     @DeleteMapping("/{id}")
-    fun deleteById(
+    fun deleteUser(
         @PathVariable(value = "id") id: String,
         uriBuilder: UriComponentsBuilder,
     ): ResponseEntity<UserDto> = runCatching {

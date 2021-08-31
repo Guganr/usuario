@@ -4,18 +4,18 @@ import restaurante.gif.usuario.domain.model.User
 
 data class UserDto(
     val id: String?,
-    val nome: String,
+    val name: String,
     val email: String,
-    val senha: String) {
+    val password: String) {
 
     companion object {
         fun fromDomain(user : User) =
             with(user) {
                 UserDto(
                     id = id,
-                    nome = nome,
+                    name = name,
                     email = email,
-                    senha = senha,
+                    password = password,
                 )
             }
     }

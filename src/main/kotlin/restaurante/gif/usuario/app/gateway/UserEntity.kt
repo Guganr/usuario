@@ -6,22 +6,22 @@ import restaurante.gif.usuario.domain.model.User
 import java.time.LocalDateTime
 
 
-@Document(collection = "usuario")
+@Document(collection = "users")
 internal data class UserEntity(
     @Id
     val id: String?,
-    val nome: String,
+    val name: String,
     val email: String,
-    val senha: String,
-    val dataCriacao: LocalDateTime
+    val password: String,
+    val createdDate: LocalDateTime
 ) {
     fun toDomain() =
         User(
             id = id,
-            nome = nome,
+            name = name,
             email = email,
-            senha = senha,
-            dataCriacao = dataCriacao
+            password = password,
+            createdDate = createdDate
         )
 
     companion object {
@@ -29,10 +29,10 @@ internal data class UserEntity(
             with(user) {
                 UserEntity(
                     id = id,
-                    nome = nome,
+                    name = name,
                     email = email,
-                    senha = senha,
-                    dataCriacao = LocalDateTime.now()
+                    password = password,
+                    createdDate = LocalDateTime.now()
                 )
             }
     }

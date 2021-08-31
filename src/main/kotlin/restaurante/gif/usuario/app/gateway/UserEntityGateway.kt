@@ -8,24 +8,24 @@ import restaurante.gif.usuario.domain.usecase.ListUserByIdUseCase.UserNotFoundEx
 
 @Component
 internal class UserEntityGateway(
-    private val usuarioRepository: UsuarioRepository,
+    private val userRepository: UserRepository,
 ) : ListUserByIdGateway, ListAllUsersGateway, DeleteUserGateway, SaveUserGateway, UpdateUserGateway {
     override fun execute(id: String): User? =
-        usuarioRepository.findByIdOrNull(id)?.toDomain()
+        userRepository.findByIdOrNull(id)?.toDomain()
 
     override fun execute(): List<User>? =
-        usuarioRepository.findAll().map(UserEntity::toDomain)
+        userRepository.findAll().map(UserEntity::toDomain)
 
     override fun execute(user: User): User =
-        usuarioRepository.save(UserEntity.fromDomain(user)).toDomain()
+        userRepository.save(UserEntity.fromDomain(user)).toDomain()
 
     override fun executeDelete(id: String) {
-        usuarioRepository.deleteById(id)
+        userRepository.deleteById(id)
     }
 
     override fun execute(id: String, user: User) {
-        (usuarioRepository.findByIdOrNull(id) ?: throw UserNotFoundException(id))
-            .copy(id = id, nome = user.nome, email = user.email, senha = user.senha)
-            .let(usuarioRepository::save)
+        (userRepository.findByIdOrNull(id) ?: throw UserNotFoundException(id))
+            .copy(id = id, name = user.name, email = user.email, password = user.password)
+            .let(userRepository::save)
     }
 }

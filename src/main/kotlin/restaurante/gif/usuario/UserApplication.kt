@@ -4,10 +4,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class UsuarioApplication
+class UserApplication
 
     fun main(args: Array<String>) {
-        runApplication<UsuarioApplication>(*args)
+        runApplication<UserApplication>(*args)
     }
 
 

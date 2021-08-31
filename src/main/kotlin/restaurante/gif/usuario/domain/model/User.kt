@@ -4,8 +4,8 @@ import java.time.LocalDateTime
 
 data class User(
     val id: String?,
-    val nome: String,
+    val name: String,
     val email: String,
-    val senha: String,
-    val dataCriacao: LocalDateTime = LocalDateTime.now()
+    val password: String,
+    val createdDate: LocalDateTime = LocalDateTime.now()
 )
