@@ -1,9 +1,7 @@
 package restaurante.gif.usuario.domain.usecase
 
 import restaurante.gif.usuario.domain.gateway.ListAllUsersGateway
-import restaurante.gif.usuario.domain.gateway.ListUserByIdGateway
 import restaurante.gif.usuario.domain.model.User
-
 import javax.inject.Named
 
 @Named

@@ -1,9 +1,13 @@
 package restaurante.gif.usuario.domain.usecase
 
+import restaurante.gif.usuario.domain.gateway.SaveUserGateway
+import restaurante.gif.usuario.domain.model.User
+import javax.inject.Named
+
+@Named
 class SaveUserUseCase(
-//    private val usuarioRepository: UsuarioRepository,
+    private val saveUserGateway: SaveUserGateway,
 )  {
-    fun cadastrarUsuarioNovo(user: restaurante.gif.usuario.domain.model.User): restaurante.gif.usuario.app.model.UserDto =
-        TODO()
-//        usuarioRepository.save(user).toDto()
+    fun execute(user: User): User =
+        saveUserGateway.execute(user)
 }

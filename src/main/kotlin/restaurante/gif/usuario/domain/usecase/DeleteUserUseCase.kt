@@ -1,10 +1,20 @@
 package restaurante.gif.usuario.domain.usecase
 
-import restaurante.gif.usuario.app.gateway.UsuarioRepository
+import restaurante.gif.usuario.domain.gateway.DeleteUserGateway
+import restaurante.gif.usuario.domain.gateway.ListUserByIdGateway
+import restaurante.gif.usuario.domain.usecase.ListUserByIdUseCase.UserNotFoundException
 
+import javax.inject.Named
+
+@Named
 class DeleteUserUseCase(
-//    private val usuarioRepository: UsuarioRepository,
+    private val deleteUserGateway: DeleteUserGateway,
+    private val listUserByIdGateway: ListUserByIdGateway,
 ) {
-    fun deletarUsuario(id: String): Nothing =
-        TODO()
+    @Throws(UserNotFoundException::class)
+    fun executeDelete(id: String) =
+        (listUserByIdGateway.execute(id)?: throw UserNotFoundException(id))
+            .let {
+                deleteUserGateway.executeDelete(id)
+            }
 }

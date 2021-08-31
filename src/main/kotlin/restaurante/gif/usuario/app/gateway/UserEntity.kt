@@ -23,4 +23,17 @@ internal data class UserEntity(
             senha = senha,
             dataCriacao = dataCriacao
         )
+
+    companion object {
+        fun fromDomain(user : User) =
+            with(user) {
+                UserEntity(
+                    id = id,
+                    nome = nome,
+                    email = email,
+                    senha = senha,
+                    dataCriacao = LocalDateTime.now()
+                )
+            }
+    }
 }

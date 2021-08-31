@@ -1,24 +1,24 @@
 package restaurante.gif.usuario.domain.usecase
 
-import org.springframework.stereotype.Service
+import restaurante.gif.usuario.domain.gateway.UpdateUserGateway
+import restaurante.gif.usuario.domain.model.User
+import restaurante.gif.usuario.domain.usecase.ListUserByIdUseCase.UserNotFoundException
+import javax.inject.Named
 
-@Service
+@Named
 class UpdateUserUseCase(
-//    private val usuarioRepository: UsuarioRepository,
+    private val updateUserGateway: UpdateUserGateway,
+    private val listUserByIdUseCase: ListUserByIdUseCase,
 ) {
 
+    @Throws(UserNotFoundException::class)
+    fun execute(id: String, user: User){
+        listUserByIdUseCase.execute(id)
+            .let {
+                updateUserGateway.execute(id, user)
+            }
+    }
 
-    fun atualizarUsuario(id: String, user: restaurante.gif.usuario.domain.model.User): restaurante.gif.usuario.app.model.UserDto =
-        TODO()
-//        (usuarioRepository.findByIdOrNull(id)
-//        ?: throw UserPrincipalNotFoundException(id))
-//        .copy(
-//            id = id,
-//            nome = user.nome,
-//            email = user.email,
-//            senha = user.senha,
-//        )
-//        .let(usuarioRepository::save).toDto()
 }
 
 
