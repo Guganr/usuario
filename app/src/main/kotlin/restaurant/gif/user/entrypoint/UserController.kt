@@ -6,8 +6,6 @@ import org.springframework.web.util.UriComponentsBuilder
 import restaurant.gif.user.app.model.UserDto
 import restaurant.gif.user.domain.model.User
 import restaurant.gif.user.domain.usecase.*
-import restaurant.gif.user.domain.usecase.ListAllUsersUseCase.NonUserFoundException
-import restaurant.gif.user.domain.usecase.ListUserByIdUseCase.UserNotFoundException
 import javax.validation.Valid
 
 
@@ -32,7 +30,7 @@ class UserController(
                 .let { (user, uri) -> ResponseEntity.created(uri).body(user) }
         }.onFailure {
             when (it) {
-                is NonUserFoundException -> ResponseEntity.noContent().build<UserDto>()
+                is ListAllUsersUseCase.NonUserFoundException -> ResponseEntity.noContent().build<UserDto>()
                 else -> throw it
             }
         }.getOrThrow()
@@ -48,7 +46,7 @@ class UserController(
                 .let { (user, uri) -> ResponseEntity.created(uri).body(UserDto.fromDomain(user)) }
         }.onFailure {
             when (it) {
-                is UserNotFoundException -> ResponseEntity.notFound().build<UserDto>()
+                is ListUserByIdUseCase.UserNotFoundException -> ResponseEntity.notFound().build<UserDto>()
                 else -> throw it
             }
         }.getOrThrow()
@@ -74,7 +72,7 @@ class UserController(
             .let { ResponseEntity.noContent().build<UserDto>() }
     }.onFailure {
         when (it) {
-            is UserNotFoundException -> ResponseEntity.notFound().build<UserDto>()
+            is ListUserByIdUseCase.UserNotFoundException -> ResponseEntity.notFound().build<UserDto>()
             else -> throw it
         }
     }.getOrThrow()
@@ -88,7 +86,7 @@ class UserController(
             .let { ResponseEntity.noContent().build<UserDto>() }
     }.onFailure {
         when (it) {
-            is NonUserFoundException -> ResponseEntity.notFound().build<UserDto>()
+            is ListAllUsersUseCase.NonUserFoundException -> ResponseEntity.notFound().build<UserDto>()
             else -> throw it
         }
     }.getOrThrow()
