@@ -1,8 +1,8 @@
-package restaurant.gif.user.app.gateway
+package restaurant.gif.user.gateway
 
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
-import restaurant.gif.user.domain.model.User
+import restaurant.gif.user.model.User
 import java.time.LocalDateTime
 
 

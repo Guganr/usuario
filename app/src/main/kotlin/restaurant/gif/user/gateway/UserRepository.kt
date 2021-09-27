@@ -5,5 +5,4 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 import org.springframework.stereotype.Repository
 
 @Repository
-//@EnableMongoRepositories( mongoTemplateRef = "userRepository")
-internal interface MongoTemplate : MongoRepository<UserEntity, String>
+internal interface UserRepository : MongoRepository<UserEntity, String>

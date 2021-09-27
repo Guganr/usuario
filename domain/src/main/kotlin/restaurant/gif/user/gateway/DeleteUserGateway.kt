@@ -1,4 +1,4 @@
-package restaurant.gif.user.domain.gateway
+package restaurant.gif.user.gateway
 
 interface DeleteUserGateway {
     fun executeDelete(id: String)

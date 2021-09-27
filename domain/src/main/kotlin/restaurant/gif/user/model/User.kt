@@ -1,4 +1,4 @@
-package restaurant.gif.user.domain.model
+package restaurant.gif.user.model
 
 import java.time.LocalDateTime
 

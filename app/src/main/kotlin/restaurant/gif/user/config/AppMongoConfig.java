@@ -35,9 +35,8 @@ public class AppMongoConfig {
         converter.setCustomConversions(new MongoCustomConversions(converterList));
         converter.afterPropertiesSet();
 
-        MongoTemplate mongoTemplate = new MongoTemplate(mongoDbFactory(), converter);
+        return new MongoTemplate(mongoDbFactory(), converter);
 
-        return mongoTemplate;
 
     }
 

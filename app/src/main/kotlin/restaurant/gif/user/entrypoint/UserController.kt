@@ -1,11 +1,12 @@
-package restaurant.gif.user.app.entrypoint
+package restaurant.gif.user.entrypoint
 
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.util.UriComponentsBuilder
-import restaurant.gif.user.app.model.UserDto
-import restaurant.gif.user.domain.model.User
-import restaurant.gif.user.domain.usecase.*
+import restaurant.gif.user.exceptions.UserNotFoundException
+import restaurant.gif.user.model.UserDto
+import restaurant.gif.user.model.User
+import restaurant.gif.user.usecase.*
 import javax.validation.Valid
 
 
@@ -46,7 +47,7 @@ class UserController(
                 .let { (user, uri) -> ResponseEntity.created(uri).body(UserDto.fromDomain(user)) }
         }.onFailure {
             when (it) {
-                is ListUserByIdUseCase.UserNotFoundException -> ResponseEntity.notFound().build<UserDto>()
+                is UserNotFoundException -> ResponseEntity.notFound().build<UserDto>()
                 else -> throw it
             }
         }.getOrThrow()
@@ -72,7 +73,7 @@ class UserController(
             .let { ResponseEntity.noContent().build<UserDto>() }
     }.onFailure {
         when (it) {
-            is ListUserByIdUseCase.UserNotFoundException -> ResponseEntity.notFound().build<UserDto>()
+            is UserNotFoundException -> ResponseEntity.notFound().build<UserDto>()
             else -> throw it
         }
     }.getOrThrow()

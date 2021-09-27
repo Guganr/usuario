@@ -1,10 +1,9 @@
-package restaurant.gif.user.app.gateway
+package restaurant.gif.user.gateway
 
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Component
-import restaurant.gif.user.domain.gateway.*
-import restaurant.gif.user.domain.model.User
-import restaurant.gif.user.domain.usecase.ListUserByIdUseCase.UserNotFoundException
+import restaurant.gif.user.gateway.*
+import restaurant.gif.user.model.User
 
 @Component
 internal class UserEntityGateway(

@@ -1,6 +1,6 @@
-package restaurant.gif.user.app.model
+package restaurant.gif.user.model
 
-import restaurant.gif.user.domain.model.User
+import restaurant.gif.user.model.User
 
 data class UserDto(
     val id: String?,

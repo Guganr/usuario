@@ -1,8 +1,8 @@
-package restaurant.gif.user.domain.usecase
+package restaurant.gif.user.usecase
 
-import restaurant.gif.user.domain.gateway.UpdateUserGateway
-import restaurant.gif.user.domain.model.User
-import restaurant.gif.user.domain.usecase.ListUserByIdUseCase.UserNotFoundException
+import restaurant.gif.user.gateway.UpdateUserGateway
+import restaurant.gif.user.model.User
+import restaurant.gif.user.exceptions.UserNotFoundException
 import javax.inject.Named
 
 @Named

@@ -1,6 +1,6 @@
-package restaurant.gif.user.domain.gateway
+package restaurant.gif.user.gateway
 
-import restaurant.gif.user.domain.model.User
+import restaurant.gif.user.model.User
 
 interface SaveUserGateway {
     fun execute(user: User): User
